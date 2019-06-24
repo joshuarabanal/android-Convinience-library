@@ -9,13 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.joshua.gui.ActivityView;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  *
@@ -24,7 +19,7 @@ import java.io.InputStream;
 public class Activity extends Context{
     private Intent intent;
     private Window window = null;
-    public ActivityView rootView;
+    public ViewGroup rootView;
     public View contentView;
     
     
@@ -34,7 +29,16 @@ public class Activity extends Context{
     public Activity(Intent i, Window w){
         intent = i;
         window = w;
-        rootView = new ActivityView(this,null,0);
+        rootView = new LinearLayout(this,null,0);
+        
+        TextView tv = new TextView(this,null,0);
+        rootView.addView(tv, 0,null);
+        tv = new TextView(this,null,0);
+        rootView.addView(tv, 0,null);
+        tv = new TextView(this,null,0);
+        rootView.addView(tv, 0,null);
+        
+        
         
     }
     
@@ -73,7 +77,7 @@ public class Activity extends Context{
     
     public void setContentView (View view, 
                 ViewGroup.LayoutParams params){
-        rootView.addView(view, 0);
+        rootView.addView(view, 0, null);
     }
 
     /**

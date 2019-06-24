@@ -11,6 +11,9 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
+import android.util.Log;
+import javafx.scene.text.Font;
+
 /**
  * see: https://developer.android.com/reference/android/graphics/Canvas.html#clipOutRect(float,%20float,%20float,%20float)
  * @author Joshua
@@ -31,9 +34,8 @@ public class Canvas {
     private Graphics g;
     private Color currentColor;
     private ArrayList<Clip> clips = new ArrayList<Clip>();
-    private JFrame frame;
-    public Canvas(JFrame frame){
-        this.frame = frame;
+    public Canvas(Graphics g){
+    	setGraphics(g);
     }
     public void setGraphics(Graphics g){
         Rectangle rect = g.getClipBounds();
@@ -67,12 +69,28 @@ public class Canvas {
     private void setColor(Paint color){
         g.setColor(new Color(color.getColor()));
     }
+    /**
+     * tested and works
+     * @param startX
+     * @param startY
+     * @param stopX
+     * @param stopY
+     * @param paint
+     */
     public void drawLine(float startX, float startY, float stopX, float stopY, Paint paint){
         setColor(paint);
         g.drawLine((int)startX, (int)startY, (int)stopX, (int)stopY);
     }
+   /**
+    * tested and works
+    * @param alpha
+    * @param red
+    * @param green
+    * @param blue
+    */
     public void drawARGB(int alpha, int red, int green, int blue){
-        g.setColor(new Color(alpha, red, green, blue));
+        g.setColor(new Color( red, green, blue, alpha));
+       
         g.fillRect(0, 0, getWidth(), getHeight());
     }
     public void drawRect(float left, float top, float right, float bottom, Paint paint){
@@ -87,7 +105,11 @@ public class Canvas {
     }
     public void drawText(CharSequence text, int start, int end, float x, float y, Paint paint){
         setColor(paint);
+        Log.i("drawString", text.toString().substring(start, end-start));
+        Log.i("coordinated to draw string", "x:"+x+", y:"+y+", width:"+getWidth()+", height:"+getHeight());
         g.drawString(text.toString().substring(start, end-start), (int)x, (int)y);
+        g.drawString("hello", 100, 100);
+        drawLine(0,0,this.getWidth(),this.getHeight(), paint);
     }
     
     /**

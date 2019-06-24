@@ -28,7 +28,6 @@ public class Window extends javax.swing.JPanel implements WindowListener{
         private MouseAdapter clikListener = new ClickEvents();
         private JFrame frame = new JFrame();
         private Activity act;
-        private Canvas c = new Canvas(frame);
         
         
     public Window(){
@@ -53,6 +52,7 @@ public class Window extends javax.swing.JPanel implements WindowListener{
             throw new NullPointerException("root view not initialized");
         }
         act.rootView.layout(0,0,frame.getWidth(),frame.getHeight());
+        frame.getContentPane().add(act.rootView);
         frame.setVisible(true);
     }
     
@@ -61,14 +61,13 @@ public class Window extends javax.swing.JPanel implements WindowListener{
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        /**
         g.drawString("BLAH", 20, 20);
         g.drawRect(200, 200, 200, 200);
         g.setClip(0, 0, frame.getWidth(), frame.getHeight());
         g.drawLine(0, frame.getHeight(), frame.getWidth(), 0);
-        c.setGraphics(g);
-        
-        act.rootView.onDraw(c);
+        **/
+        //act.rootView.onDraw(new Canvas(g));
         
     }
 
