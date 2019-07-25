@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import android.util.Log;
-import javafx.scene.text.Font;
 
 /**
  * see: https://developer.android.com/reference/android/graphics/Canvas.html#clipOutRect(float,%20float,%20float,%20float)
