@@ -10,6 +10,7 @@ package android.R;
  * @author Joshua
  */
 public class attr {
+public attr() {}
 
     public static int minWidth = 0;
     public static int minHeight = 1;
